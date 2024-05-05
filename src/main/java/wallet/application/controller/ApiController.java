@@ -1,38 +1,42 @@
 package wallet.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import wallet.application.dto.GetResponse;
-import wallet.application.dto.OperationType;
-import wallet.application.dto.UpdateResponse;
+import org.springframework.web.bind.annotation.*;
+import wallet.application.dto.*;
 import wallet.application.services.GetBalanceService;
 import wallet.application.services.UpdateBalanceService;
 
-@Controller(value = "/api")
+@RestController
 public class ApiController {
 
     private final UpdateBalanceService updateBalanceService;
     private final GetBalanceService getBalanceService;
 
+    @Autowired
     public ApiController(UpdateBalanceService updateBalanceService, GetBalanceService getBalanceService) {
         this.updateBalanceService = updateBalanceService;
         this.getBalanceService = getBalanceService;
     }
 
-    @PostMapping("/v1/wallet")
-    public ResponseEntity<UpdateResponse> updateWalletBalance(@RequestParam String walletUUID,
-                                                              @RequestParam OperationType operationType,
-                                                              @RequestParam Integer amount) {
-        return ResponseEntity.ok(updateBalanceService.update(walletUUID, operationType, amount));
+    @PostMapping(value = "/wallet", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UpdateResponse> updateWalletBalance( @RequestBody UpdateRequest request ) {
+        UpdateResponse response = updateBalanceService.
+                update(request.getWalletUUID (), request.getOperationType (), request.getAmount ());
+        if(response instanceof UpdateError) {
+            return ResponseEntity.status ( HttpStatus.BAD_REQUEST ).body ( response );
+        }
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/v1/wallets/{wallet_ID}")
+    @GetMapping(value = "/wallets/{walletUUID}")
     public ResponseEntity<GetResponse> getWalletBalance(@PathVariable String walletUUID) {
-        return ResponseEntity.ok(getBalanceService.getBalance(walletUUID));
+        GetResponse response = getBalanceService.getBalance(walletUUID);
+        if(response instanceof GetResponseError) {
+            return ResponseEntity.status ( HttpStatus.BAD_REQUEST ).body ( response );
+        }
+        return ResponseEntity.ok(response);
     }
  }

@@ -1,0 +1,71 @@
+
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-lesson1.yaml
+  - changeSet:
+      id: 1
+      author: dev
+      changes:
+        - createTable:
+            tableName: wallet
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: balance
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: walletuuid
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: dev
+      changes:
+        - insert:
+            tableName: wallet
+            columns:
+              - column:
+                  - name: id
+                    value: 1
+              - column:
+                    name: balance
+                    value: 5000
+              - column:
+                    name: walletuuid
+                    value: f74f4d7e-e8e6-476e-aa92-0952499c42ee
+        - insert:
+            tableName: wallet
+            columns:
+              - column:
+                  - name: id
+                    value: 2
+              - column:
+                  name: balance
+                  value: 12500
+              - column:
+                  name: walletuuid
+                  value: 7525d376-2d6c-4340-8003-6a7676471fae
+        - insert:
+            tableName: wallet
+            columns:
+              - column:
+                  - name: id
+                    value: 3
+              - column:
+                  name: balance
+                  value: 7500
+              - column:
+                  name: walletuuid
+                  value: 2acebb54-c99a-4e90-b44e-2e5e065ce1d0
+
+        - rollback:
+            delete:
+              table: walletuuid

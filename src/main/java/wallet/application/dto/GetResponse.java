@@ -1,8 +1,11 @@
 package wallet.application.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class GetResponse {
-    private final int balance;
+    private int balance;
+    private final boolean result = true;
 }
