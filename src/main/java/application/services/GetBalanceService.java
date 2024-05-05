@@ -1,6 +1,6 @@
-package wallet.application.services;
+package application.services;
 
-import wallet.application.dto.GetResponse;
+import application.dto.GetResponse;
 
 public interface GetBalanceService {
     GetResponse getBalance(String walletUUID);

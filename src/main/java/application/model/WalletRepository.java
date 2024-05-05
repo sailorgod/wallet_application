@@ -1,4 +1,4 @@
-package wallet.application.model;
+package application.model;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

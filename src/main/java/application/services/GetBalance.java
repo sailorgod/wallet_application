@@ -1,12 +1,12 @@
-package wallet.application.services;
+package application.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wallet.application.dto.GetResponse;
-import wallet.application.dto.GetResponseError;
-import wallet.application.model.Wallet;
-import wallet.application.model.WalletRepository;
+import application.dto.GetResponse;
+import application.dto.GetResponseError;
+import application.model.Wallet;
+import application.model.WalletRepository;
 
 import java.util.Optional;
 

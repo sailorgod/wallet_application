@@ -1,13 +1,13 @@
-package wallet.application.controller;
+package application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import wallet.application.dto.*;
-import wallet.application.services.GetBalanceService;
-import wallet.application.services.UpdateBalanceService;
+import application.dto.*;
+import application.services.GetBalanceService;
+import application.services.UpdateBalanceService;
 
 @RestController
 public class ApiController {

@@ -1,4 +1,4 @@
-package wallet.application.model;
+package application.model;
 
 import lombok.Getter;
 import lombok.Setter;

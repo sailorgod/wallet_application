@@ -3,11 +3,11 @@ package wallet.application.servises;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import wallet.application.dto.GetResponse;
-import wallet.application.dto.GetResponseError;
-import wallet.application.model.Wallet;
-import wallet.application.model.WalletRepository;
-import wallet.application.services.GetBalance;
+import application.dto.GetResponse;
+import application.dto.GetResponseError;
+import application.model.Wallet;
+import application.model.WalletRepository;
+import application.services.GetBalance;
 
 import java.util.Optional;
 

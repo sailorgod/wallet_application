@@ -1,4 +1,4 @@
-package wallet.application.dto;
+package application.dto;
 
 public enum OperationType {
     DEPOSIT, WITHDRAW
